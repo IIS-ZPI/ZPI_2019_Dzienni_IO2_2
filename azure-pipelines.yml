@@ -19,13 +19,13 @@ steps:
     jdkVersionOption: '1.11'
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
-    testResultsFiles: '**/TEST-*.xml'
+    testResultsFiles: 'test-result.xml'
     goals: 'package'
    
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit' # Options: JUnit, NUnit, VSTest, xUnit, cTest
-    testResultsFiles: '**/TEST-*.xml' 
+    testResultsFiles: 'test-result.xml'
     #searchFolder: '$(System.DefaultWorkingDirectory)' # Optional
     #mergeTestResults: false # Optional
     #failTaskOnFailedTests: false # Optional
