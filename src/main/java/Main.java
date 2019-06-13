@@ -1,4 +1,7 @@
 import controller.CurrancyController;
+import controller.DownwardSession;
+import controller.GrowthSession;
+import controller.StaticSession;
 import model.CurrencyHistory;
 import model.Rate;
 
@@ -43,6 +46,18 @@ public class Main {
         for(Rate r: currencyHistory.getRates()){
             System.out.println(r.getEffectiveDate() + "\t" + r.getMid());
         }
+
+        GrowthSession growthSession = new GrowthSession();
+        StaticSession staticSession = new StaticSession();
+        DownwardSession downwardSession = new DownwardSession();
+
+        growthSession.countSession(currencyHistory.getRates());
+        staticSession.countSession(currencyHistory.getRates());
+        downwardSession.countSession(currencyHistory.getRates());
+
+        System.out.println("Liczba sesji wzrostowych: " + growthSession.getGrowthSessionCounter());
+        System.out.println("Liczba sesji stałych: " + staticSession.getStaticSessionCounter());
+        System.out.println("Liczba sesji spadkowych: " + downwardSession.getDownwardSessionCounter());
 
 
     }
