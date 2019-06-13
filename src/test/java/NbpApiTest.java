@@ -1,6 +1,6 @@
 import endpoint.NbpEndpoint;
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 
 public class NbpApiTest {
