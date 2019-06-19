@@ -10,7 +10,7 @@ public class DownwardSession implements Session {
 
     @Override public void countSession(List<Rate> rate) {
 
-        for (int i = 0; i < rate.size() - 2; i++) {
+        for (int i = 0; i < rate.size() - 1; i++) {
             if (rate.get(i).getMid() < rate.get(i + 1).getMid())
                 downwardSessionCounter++;
         }
