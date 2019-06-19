@@ -17,7 +17,7 @@ public class NbpEndpoint {
     private static final String API_URL = "http://api.nbp.pl/api/exchangerates/rates/a/";
     private static final String API_TABLE_URL = "http://api.nbp.pl/api/exchangerates/tables/a";
 
-
+    //
     public String sendRequest(boolean table, String currency, String startDate, String endDate) throws Exception {
         URL obj;
         if (table)
