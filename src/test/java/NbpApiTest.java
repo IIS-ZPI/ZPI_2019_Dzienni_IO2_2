@@ -22,7 +22,7 @@ public class NbpApiTest {
         NbpEndpoint nbpEndpoint = new NbpEndpoint();
 
         //When
-        result = nbpEndpoint.sendRequest(currency, startDate, finishDate);
+        result = nbpEndpoint.sendRequest(false, currency, startDate, finishDate);
         //Then
         Assert.assertEquals(expectedJson, result);
     }
