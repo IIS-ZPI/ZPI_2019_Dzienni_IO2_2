@@ -3,6 +3,7 @@ package controller;
 import com.google.gson.Gson;
 import endpoint.NbpEndpoint;
 import model.CurrencyHistory;
+import model.CurrencyList;
 
 public class CurrancyController {
 
@@ -22,6 +23,11 @@ public class CurrancyController {
     }
 
     public CurrencyHistory getHistory() throws Exception {
-        return gson.fromJson(nbpEndpoint.sendRequest(name,startDate,endDate),CurrencyHistory.class);
+        return gson.fromJson(nbpEndpoint.sendRequest(false, name,startDate,endDate),CurrencyHistory.class);
+    }
+
+    public CurrencyList getCurrencyList() throws Exception {
+        CurrencyList[] enums = gson.fromJson(nbpEndpoint.sendRequest(true, name,startDate,endDate), CurrencyList[].class);
+        return enums[0];
     }
 }

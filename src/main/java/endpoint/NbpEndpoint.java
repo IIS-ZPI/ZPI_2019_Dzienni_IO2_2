@@ -15,10 +15,15 @@ public class NbpEndpoint {
 
     private static final String USER_AGENT = "Mozilla/5.0";
     private static final String API_URL = "http://api.nbp.pl/api/exchangerates/rates/a/";
+    private static final String API_TABLE_URL = "http://api.nbp.pl/api/exchangerates/tables/a";
 
 
-    public String sendRequest(String currency, String startDate, String endDate) throws Exception {
-        URL obj = getUrl(currency, startDate, endDate);
+    public String sendRequest(boolean table, String currency, String startDate, String endDate) throws Exception {
+        URL obj;
+        if (table)
+            obj = getCurrencyTableUrl();
+        else
+            obj = getUrl(currency, startDate, endDate);
         int responseCode = 0;
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
@@ -42,9 +47,12 @@ public class NbpEndpoint {
         return response.toString();
     }
 
-
     private URL getUrl(String currency, String startDate, String endDate) throws MalformedURLException {
         return new URL(API_URL + currency + "/" + startDate + "/" + endDate + "?format=json");
+    }
+
+    private URL getCurrencyTableUrl() throws MalformedURLException {
+        return new URL(API_TABLE_URL + "?format=json");
     }
 
 }
