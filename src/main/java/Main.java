@@ -3,7 +3,9 @@ import controller.DownwardSession;
 import controller.GrowthSession;
 import controller.StaticSession;
 import model.CurrencyHistory;
+import model.CurrencyList;
 import model.Rate;
+import model.Table;
 
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
@@ -20,7 +22,7 @@ public class Main {
 
         CurrencyCalendar cC = new CurrencyCalendar();
 
-        System.out.println("Provide session date range:");
+        System.out.println("Enter session date range:");
         System.out.println("1 - week");
         System.out.println("2 - 2 weeks");
         System.out.println("3 - month");
@@ -33,13 +35,25 @@ public class Main {
         int rangeSelected = scanner.nextInt();
         cC.setDateRange(rangeSelected);
 
+        // pobieranie walut z NBP
+        CurrancyController currancyController1 = new CurrancyController("gbp", "2019-01-01", "2019-01-08");
+        CurrencyList currencyList = currancyController1.getCurrencyList();
+
+        System.out.println("\nAvailable value codes: ");
+        for(Table t: currencyList.getTableRates()){
+            System.out.print(t.getCode() + " ");
+        }
+
+        System.out.print("\nEnter value code: ");
+        String code = scanner.next();
+
         // format daty
         String startDateFormat = sdf.format(cC.getStartDate());
         String endDateFormat = sdf.format(cC.getEndDate());
         System.out.println(startDateFormat + " - " + endDateFormat);
 
         // pobieranie dat i wartości waluty z NBP
-        CurrancyController currancyController = new CurrancyController("gbp", startDateFormat, endDateFormat);
+        CurrancyController currancyController = new CurrancyController(code, startDateFormat, endDateFormat);
         CurrencyHistory currencyHistory = currancyController.getHistory();
         System.out.println(currencyHistory.getCurrency());
 
