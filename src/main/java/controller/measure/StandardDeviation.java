@@ -2,6 +2,7 @@ package controller.measure;
 
 import model.Rate;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class StandardDeviation implements Measure {
@@ -18,6 +19,11 @@ public class StandardDeviation implements Measure {
         for (Rate a : rate)
             temp += (a.getMid() - mean) * (a.getMid() - mean);
         standardDeviation = Math.sqrt(temp / rate.size());
+
+        DecimalFormat df = new DecimalFormat("#.##");
+        String midString = df.format(standardDeviation);
+        midString  = midString.replace(",", ".");
+        standardDeviation = Double.parseDouble(midString);
     }
 
     void getMean(List<Rate> rate) {

@@ -28,6 +28,7 @@ public class NbpEndpointTest {
 
     @Test
     public void shouldReturnCountOfDownwardSessions() throws Exception {
+
         //Given
         int result = 0;
         String currency = "gbp";

@@ -2,39 +2,26 @@ package controller.measure;
 
 import model.Rate;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.function.BinaryOperator;
 
 public class Dominat implements Measure {
 
     int dominat = 0;
-    List <Double> dominateList;
+    double dominate;
 
     @Override
     public void countStatisticalMeasure(List<Rate> rate) {
 
-        dominateList = new ArrayList<Double>();
+        List<Double> theList = new ArrayList<>();
+        for (int i = 0; i < rate.size(); i++)
+            theList.add(rate.get(i).getMid());
 
-        int maxCount = 0;
-
-        for (int i = 0; i < rate.size(); ++i)
-        {
-            int count = 0;
-            for (int j = 0; j < rate.size(); ++j)
-            {
-                if (rate.get(j).getMid() == rate.get(i).getMid())
-                    ++count;
-            }
-            if (count >= maxCount)
-            {
-                maxCount = count;
-                dominateList.add(rate.get(i).getMid());
-            }
-        }
-
+        dominate = theList.stream()
+                .reduce(BinaryOperator.maxBy(Comparator.comparingInt(o -> Collections.frequency(theList, o)))).orElse(null);
     }
 
-    public List<Double> getDominate() {
-        return dominateList;
+    public double getDominate() {
+        return dominate;
     }
 }

@@ -3,6 +3,8 @@ package model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.text.DecimalFormat;
+
 public class Rate implements Comparable< Rate >{
 
     @SerializedName("no")
@@ -32,7 +34,11 @@ public class Rate implements Comparable< Rate >{
     }
 
     public Double getMid() {
-        return mid;
+        DecimalFormat df = new DecimalFormat("#.##");
+        String midString = df.format(mid);
+        midString = midString.replace(",", ".");
+
+        return Double.valueOf(midString);
     }
 
     public void setMid(Double mid) {
