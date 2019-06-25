@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
-public class NbpApiTest {
+public class NbpEndpointTest {
 
     @Test
     public void shouldReturnSameJson() throws Exception {

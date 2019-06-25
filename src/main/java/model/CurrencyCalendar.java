@@ -39,7 +39,7 @@ public class CurrencyCalendar
                 startDate = calendar.getTime();
                 break;
             case 4:
-                calendar.add(Calendar.MONTH,  -4);
+                calendar.add(Calendar.MONTH,  -3);
                 startDate = calendar.getTime();
                 break;
             case 5:
