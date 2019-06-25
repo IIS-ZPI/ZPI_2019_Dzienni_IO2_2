@@ -1,7 +1,6 @@
 import controller.CurrancyController;
-import controller.DownwardSession;
-import controller.GrowthSession;
-import controller.StaticSession;
+import controller.session.DownwardSession;
+import controller.session.StaticSession;
 import endpoint.NbpEndpoint;
 import model.CurrencyHistory;
 import org.junit.Assert;

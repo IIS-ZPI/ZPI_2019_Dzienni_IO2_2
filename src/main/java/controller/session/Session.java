@@ -1,4 +1,4 @@
-package controller;
+package controller.session;
 
 import model.Rate;
 
@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface Session {
 
-    public void countSession(List<Rate> rate);
+    void countSession(List<Rate> rate);
 }
