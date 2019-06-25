@@ -3,7 +3,7 @@ package model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Rate {
+public class Rate implements Comparable< Rate >{
 
     @SerializedName("no")
     @Expose
@@ -37,6 +37,11 @@ public class Rate {
 
     public void setMid(Double mid) {
         this.mid = mid;
+    }
+
+    @Override
+    public int compareTo(Rate o) {
+        return this.getMid().compareTo(o.getMid());
     }
 
 }

@@ -1,4 +1,4 @@
-package controller;
+package controller.session;
 
 import model.Rate;
 

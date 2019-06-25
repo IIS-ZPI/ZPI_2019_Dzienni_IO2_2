@@ -1,5 +1,8 @@
 package controller;
 
+import controller.session.DownwardSession;
+import controller.session.GrowthSession;
+import controller.session.StaticSession;
 import model.CurrencyCalendar;
 import model.CurrencyHistory;
 import model.CurrencyList;

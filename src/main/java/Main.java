@@ -27,6 +27,8 @@ public class Main {
                     selectedOption = getOption();
                     break;
                 case 2:
+                    MeasureController measureController = new MeasureController();
+                    measureController.countMeasure();
                     //....
                     System.out.println("----------------------------------------");
                     selectedOption = getOption();
