@@ -1,79 +1,78 @@
-import controller.CurrancyController;
-import controller.DownwardSession;
-import controller.GrowthSession;
-import controller.StaticSession;
+import controller.*;
 import model.CurrencyHistory;
 import model.CurrencyList;
 import model.Rate;
 import model.Table;
 
+import java.sql.SQLOutput;
 import java.text.SimpleDateFormat;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        System.out.println("Dziala");
 
+        int selectedOption;
+        boolean program = true;
+
+        selectedOption = getOption();
+
+        while (program) {
+            switch (selectedOption) {
+                case 1:
+                    SessionController sessionController = new SessionController();
+                    sessionController.countSession();
+                    System.out.println("----------------------------------------");
+                    selectedOption = getOption();
+                    break;
+                case 2:
+                    //....
+                    System.out.println("----------------------------------------");
+                    selectedOption = getOption();
+                    break;
+                case 3:
+                    //...
+                    System.out.println("----------------------------------------");
+                    selectedOption = getOption();
+                    break;
+                case 4:
+                    System.out.println("Close program...");
+                    System.out.println("Program closed. Thanks for using and see again in future.");
+                    program = false;
+                    break;
+                default:
+                    System.out.println("Cannot get any information for this choice");
+                    System.out.println("----------------------------------------");
+                    selectedOption = getOption();
+                    break;
+            }
+        }
+    }
+
+    public static int getOption() {
+
+        boolean correctChoose = false;
+        int selectedOption = 0;
         Scanner scanner = new Scanner(System.in);
 
-        String pattern = "yyyy-MM-dd";
-        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        System.out.println("Please select which information do you want get.");
+        System.out.println("1 - Count sessions for period of time which you can choose.");
+        System.out.println("2 - Statistical measures for period of time which you can choose.");
+        System.out.println("3 - Distribution of monthly and quarterly changes for selected currency pairs.");
+        System.out.println("4 - Close program");
 
-        CurrencyCalendar cC = new CurrencyCalendar();
-
-        System.out.println("Enter session date range:");
-        System.out.println("1 - week");
-        System.out.println("2 - 2 weeks");
-        System.out.println("3 - month");
-        System.out.println("4 - 4 months");
-        System.out.println("5 - 6 months");
-        System.out.println("6 - year");
-        System.out.print("> ");
-
-        // wczytywanie opcji
-        int rangeSelected = scanner.nextInt();
-        cC.setDateRange(rangeSelected);
-
-        // pobieranie walut z NBP
-        CurrancyController currancyController1 = new CurrancyController("gbp", "2019-01-01", "2019-01-08");
-        CurrencyList currencyList = currancyController1.getCurrencyList();
-
-        System.out.println("\nAvailable value codes: ");
-        for(Table t: currencyList.getTableRates()){
-            System.out.print(t.getCode() + " ");
+        while (!correctChoose) {
+            try {
+                selectedOption = scanner.nextInt();
+                correctChoose = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid value! Please choose correct option");
+                scanner.next();
+            }
         }
 
-        System.out.print("\nEnter value code: ");
-        String code = scanner.next();
-
-        // format daty
-        String startDateFormat = sdf.format(cC.getStartDate());
-        String endDateFormat = sdf.format(cC.getEndDate());
-        System.out.println(startDateFormat + " - " + endDateFormat);
-
-        // pobieranie dat i wartości waluty z NBP
-        CurrancyController currancyController = new CurrancyController(code, startDateFormat, endDateFormat);
-        CurrencyHistory currencyHistory = currancyController.getHistory();
-        System.out.println(currencyHistory.getCurrency());
-
-        for(Rate r: currencyHistory.getRates()){
-            System.out.println(r.getEffectiveDate() + "\t" + r.getMid());
-        }
-
-        GrowthSession growthSession = new GrowthSession();
-        StaticSession staticSession = new StaticSession();
-        DownwardSession downwardSession = new DownwardSession();
-
-        growthSession.countSession(currencyHistory.getRates());
-        staticSession.countSession(currencyHistory.getRates());
-        downwardSession.countSession(currencyHistory.getRates());
-
-        System.out.println("Liczba sesji wzrostowych: " + growthSession.getGrowthSessionCounter());
-        System.out.println("Liczba sesji stałych: " + staticSession.getStaticSessionCounter());
-        System.out.println("Liczba sesji spadkowych: " + downwardSession.getDownwardSessionCounter());
-
-
+        return selectedOption;
     }
 
 }
