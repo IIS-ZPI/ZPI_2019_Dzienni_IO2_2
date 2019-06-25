@@ -1,11 +1,4 @@
 import controller.*;
-import model.CurrencyHistory;
-import model.CurrencyList;
-import model.Rate;
-import model.Table;
-
-import java.sql.SQLOutput;
-import java.text.SimpleDateFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
