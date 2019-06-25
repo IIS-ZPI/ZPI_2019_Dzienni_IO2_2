@@ -46,12 +46,60 @@ public class CurrancyCalendarTest {
     public void shouldReturnOneMonthDifferance() throws Exception
     {
         //Given
-        int sevenDayOption = 3;
+        int option = 3;
         int expected = 31;
         int actual = 0;
 
         //When
-        currencyCalendar.setDateRange(sevenDayOption);
+        currencyCalendar.setDateRange(option);
+        actual = (int)( (currencyCalendar.getEndDate().getTime() - currencyCalendar.getStartDate().getTime()) / (1000 * 60 * 60 * 24));
+
+        //Then
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void shouldReturnQuaterDifferance() throws Exception
+    {
+        //Given
+        int option = 4;
+        int expected = 91;
+        int actual = 0;
+
+        //When
+        currencyCalendar.setDateRange(option);
+        actual = (int)( (currencyCalendar.getEndDate().getTime() - currencyCalendar.getStartDate().getTime()) / (1000 * 60 * 60 * 24));
+
+        //Then
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void shouldReturnHalfYearDifferance() throws Exception
+    {
+        //Given
+        int option = 5;
+        int expected = 181;
+        int actual = 0;
+
+        //When
+        currencyCalendar.setDateRange(option);
+        actual = (int)( (currencyCalendar.getEndDate().getTime() - currencyCalendar.getStartDate().getTime()) / (1000 * 60 * 60 * 24));
+
+        //Then
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void shouldReturnOneYearDifferance() throws Exception
+    {
+        //Given
+        int option = 6;
+        int expected = 365;
+        int actual = 0;
+
+        //When
+        currencyCalendar.setDateRange(option);
         actual = (int)( (currencyCalendar.getEndDate().getTime() - currencyCalendar.getStartDate().getTime()) / (1000 * 60 * 60 * 24));
 
         //Then
