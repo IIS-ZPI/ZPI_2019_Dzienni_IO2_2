@@ -1,8 +1,6 @@
+import model.CurrencyCalendar;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Calendar;
-import java.util.Date;
 
 public class CurrancyCalendarTest {
 
