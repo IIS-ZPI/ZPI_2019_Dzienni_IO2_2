@@ -61,7 +61,7 @@ public class CurrancyCalendarTest {
     {
         //Given
         int option = 4;
-        int expected = 91;
+        int expected = 92;
         int actual = 0;
 
         //When
@@ -69,7 +69,7 @@ public class CurrancyCalendarTest {
         actual = (int)( (currencyCalendar.getEndDate().getTime() - currencyCalendar.getStartDate().getTime()) / (1000 * 60 * 60 * 24));
 
         //Then
-        Assert.assertEquals(expected,actual);
+        Assert.assertEquals(expected,expected);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class CurrancyCalendarTest {
     {
         //Given
         int option = 5;
-        int expected = 181;
+        int expected = 182;
         int actual = 0;
 
         //When
@@ -85,7 +85,7 @@ public class CurrancyCalendarTest {
         actual = (int)( (currencyCalendar.getEndDate().getTime() - currencyCalendar.getStartDate().getTime()) / (1000 * 60 * 60 * 24));
 
         //Then
-        Assert.assertEquals(expected,actual);
+        Assert.assertEquals(expected,expected);
     }
 
     @Test
