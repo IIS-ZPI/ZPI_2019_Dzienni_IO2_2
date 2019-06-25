@@ -1,12 +1,14 @@
+package model;
+
 import java.util.Calendar;
 import java.util.Date;
 
-class CurrencyCalendar
+public class CurrencyCalendar
 {
     private Date startDate;
     private Date endDate;
 
-    CurrencyCalendar()
+    public CurrencyCalendar()
     {
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
@@ -15,7 +17,7 @@ class CurrencyCalendar
     }
 
     // 1 - tydzień, 2 - 2 tygodnie, 3 - miesiąc, 4 - kwartał, 5 - pół roku, 6 - rok
-    void setDateRange(int option)
+    public void setDateRange(int option)
     {
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
@@ -53,11 +55,11 @@ class CurrencyCalendar
         }
     }
 
-    Date getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    Date getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 }
