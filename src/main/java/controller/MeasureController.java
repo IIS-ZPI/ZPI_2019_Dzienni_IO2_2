@@ -64,7 +64,7 @@ public class MeasureController {
         dominat.countStatisticalMeasure(currencyHistory.getRates());
         median.countStatisticalMeasure(currencyHistory.getRates());
         standardDeviaton.countStatisticalMeasure(currencyHistory.getRates());
-        coefficientOfVariation.countStatisticalMeasure(standardDeviaton.getStandardDeviation(), standardDeviaton.getMean());
+        coefficientOfVariation.countStatisticalMeasure(currencyHistory.getRates());
 
         System.out.println("CoefficientOfVariation: " + coefficientOfVariation.getCoefficientOfVariation() + "%");
         System.out.println("Dominat: " + dominat.getDominate());

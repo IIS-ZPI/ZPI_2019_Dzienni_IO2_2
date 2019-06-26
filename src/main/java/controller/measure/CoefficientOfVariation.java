@@ -11,6 +11,16 @@ public class CoefficientOfVariation implements Measure {
 
     @Override
     public void countStatisticalMeasure(List<Rate> rate) {
+        StandardDeviation standardDeviation = new StandardDeviation();
+        standardDeviation.countStatisticalMeasure(rate);
+        double stdev = standardDeviation.getStandardDeviation();
+        double mean = standardDeviation.getMean();
+        coefficientOfVariation = stdev/mean*100;
+
+        DecimalFormat df = new DecimalFormat("#.##");
+        String midString = df.format(coefficientOfVariation);
+        midString  = midString.replace(",", ".");
+        coefficientOfVariation = Double.parseDouble(midString);
     }
 
     public void countStatisticalMeasure(double standardDeviation, double mean) {

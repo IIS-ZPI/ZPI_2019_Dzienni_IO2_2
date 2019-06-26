@@ -21,7 +21,7 @@ public class CoefficientOfVariationTest {
         rates.add(new Rate("122/A/NBP/2019", "2019-06-25", 2.12));
 
         // Given
-        double expected = 2.2;
+        double expected = 3.72;
         double actual;
 
         // When
