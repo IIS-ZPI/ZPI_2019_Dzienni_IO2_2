@@ -20,7 +20,7 @@ public class StandardDeviation implements Measure {
             temp += (a.getMid() - mean) * (a.getMid() - mean);
         standardDeviation = Math.sqrt(temp / rate.size());
 
-        DecimalFormat df = new DecimalFormat("#.##");
+        DecimalFormat df = new DecimalFormat("#.####");
         String midString = df.format(standardDeviation);
         midString  = midString.replace(",", ".");
         standardDeviation = Double.parseDouble(midString);

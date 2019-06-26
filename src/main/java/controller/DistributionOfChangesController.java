@@ -21,31 +21,6 @@ public class DistributionOfChangesController {
 
         CurrencyCalendar cC = new CurrencyCalendar();
 
-//        System.out.println("Enter session date range:");
-//        System.out.println("1 - week");
-//        System.out.println("2 - 2 weeks");
-//        System.out.println("3 - month");
-//        System.out.println("4 - 4 months");
-//        System.out.println("5 - 6 months");
-//        System.out.println("6 - year");
-//        System.out.print("> ");
-
-//        // wczytywanie opcji
-//        int rangeSelected = scanner.nextInt();
-//        cC.setDateRange(rangeSelected);
-
-        // pobieranie walut z NBP
-//        CurrancyController currancyController1 = new CurrancyController("gbp", "2019-01-01", "2019-01-08");
-//        CurrencyList currencyList = currancyController1.getCurrencyList();
-//
-//        CurrancyController currancyController2 = new CurrancyController("gbp", "2019-01-01", "2019-01-08");
-//        CurrencyList currencyList2 = currancyController1.getCurrencyList();
-//
-//        System.out.println("\nAvailable value codes: ");
-//        for (Table t : currencyList.getTableRates()) {
-//            System.out.print(t.getCode() + " ");
-//        }
-
         System.out.print("\nEnter first value code: ");
         String codeFirst = scanner.next();
         System.out.print("\nEnter second value code: ");
