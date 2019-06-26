@@ -17,6 +17,13 @@ public class Rate implements Comparable< Rate >{
     @Expose
     private Double mid;
 
+    public Rate(String no, String effectiveDate, Double mid)
+    {
+        this.no = no;
+        this.effectiveDate = effectiveDate;
+        this.mid = mid;
+    }
+
     public String getNo() {
         return no;
     }
