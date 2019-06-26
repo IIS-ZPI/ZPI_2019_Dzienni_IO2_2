@@ -34,7 +34,7 @@ public class Rate implements Comparable< Rate >{
     }
 
     public Double getMid() {
-        DecimalFormat df = new DecimalFormat("#.##");
+        DecimalFormat df = new DecimalFormat("#.####");
         String midString = df.format(mid);
         midString = midString.replace(",", ".");
 
