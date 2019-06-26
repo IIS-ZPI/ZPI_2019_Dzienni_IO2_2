@@ -33,8 +33,8 @@ public class NbpEndpoint {
         } catch (Exception e){
             throw new ConnectException();
         }
-        System.out.println("\nSending 'GET' request to URL : " + con.getURL().toString());
-        System.out.println("Response Code : " + responseCode);
+       // System.out.println("\nSending 'GET' request to URL : " + con.getURL().toString());
+        //System.out.println("Response Code : " + responseCode);
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(con.getInputStream()));
         String inputLine;

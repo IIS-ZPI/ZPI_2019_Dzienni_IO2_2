@@ -28,6 +28,8 @@ public class Main {
                     break;
                 case 3:
                     //...
+                    DistributionOfChangesController distributionOfChangesController = new DistributionOfChangesController();
+                    distributionOfChangesController.countDistribution();
                     System.out.println("----------------------------------------");
                     selectedOption = getOption();
                     break;
