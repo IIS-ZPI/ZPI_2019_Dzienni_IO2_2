@@ -4,9 +4,13 @@ import controller.measure.*;
 import model.*;
 
 import java.text.SimpleDateFormat;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MeasureController {
+
+    int rangeSelected = 0;
+    boolean correctOption = false;
 
     public void countMeasure() throws Exception {
 
@@ -27,7 +31,19 @@ public class MeasureController {
         System.out.print("> ");
 
         // wczytywanie opcji
-        int rangeSelected = scanner.nextInt();
+
+        while(!correctOption){
+            try {
+                rangeSelected = scanner.nextInt();
+            }catch (InputMismatchException e){
+                //System.out.println("Wrong choice. Try again!");
+                scanner.next();
+            }
+            if(rangeSelected >0 && rangeSelected < 7)
+                correctOption = true;
+            else
+                System.out.println("Wrong choice. Try again!");
+        }
         cC.setDateRange(rangeSelected);
 
         // pobieranie walut z NBP

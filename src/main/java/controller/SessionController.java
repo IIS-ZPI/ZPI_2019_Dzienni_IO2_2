@@ -10,9 +10,13 @@ import model.Rate;
 import model.Table;
 
 import java.text.SimpleDateFormat;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SessionController {
+
+    boolean correctOption =  false;
+    int rangeSelected = 0;
 
     public void countSession() throws Exception {
 
@@ -33,8 +37,20 @@ public class SessionController {
         System.out.print("> ");
 
         // wczytywanie opcji
-        int rangeSelected = scanner.nextInt();
+        while(!correctOption){
+            try {
+                rangeSelected = scanner.nextInt();
+            }catch (InputMismatchException e){
+                //System.out.println("Wrong choice. Try again!");
+                scanner.next();
+            }
+            if(rangeSelected >0 && rangeSelected < 7)
+                correctOption = true;
+            else
+                System.out.println("Wrong choice. Try again!");
+        }
         cC.setDateRange(rangeSelected);
+
 
         // pobieranie walut z NBP
         CurrancyController currancyController1 = new CurrancyController("gbp", "2019-01-01", "2019-01-08");
