@@ -21,7 +21,6 @@ public class MedianTest {
         rates.add(new Rate("122/A/NBP/2019", "2019-06-25", 1.5));
 
         // Given
-        int option = 2;
         double expected = 2.1;
         double actual;
 
@@ -30,6 +29,6 @@ public class MedianTest {
         actual = median.getMedian();
 
         // Then
-        Assert.assertEquals(expected,actual,0.01);
+        Assert.assertEquals(expected,actual,0.001);
     }
 }
