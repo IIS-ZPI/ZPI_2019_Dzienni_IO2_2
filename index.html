@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>ZPI</h1>
+<h2> Team IO2_2 </h2>
+<b>Team</b>
+ <ul>
+  <li>Dawid Macias</li>
+  <li>Karol Oleksy</li>
+  <li>Adrian Piątkowski</li>
+  <li>Stanisław Puławski</li>
+</ul>     
+<b>URL:</b><p id="url">NULL</p>
+<b>TAG NAME:</b><p id="tag_name">NULL</p>
+<b>INFO:</b><p id="body">NULL</p>
+<b>RELEASE DATE:</b><p id="release_date">NULL</p>
+  
+<b>DOWNLOAD JAR:</b><p id="download">NULL</p>
+  
+<script>
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var myObj = JSON.parse(this.responseText);
+    document.getElementById("url").innerHTML = myObj.url;
+    document.getElementById("tag_name").innerHTML = myObj.tag_name;
+    document.getElementById("body").innerHTML = myObj.body;
+    document.getElementById("release_date").innerHTML = myObj.published_at;    
+    document.getElementById("download").innerHTML = "<a href='" + myObj.assets[0].browser_download_url + "' download='proposed_file_name'>Download JAR!</a>";
+     
+  }
+};
+xmlhttp.open("GET", "https://api.github.com/repos/IIS-ZPI/ZPI_2019_Dzienni_IO2_2/releases/latest", true);
+xmlhttp.send();
+</script>
+ZPI, 2019
+</body>
+</html>
