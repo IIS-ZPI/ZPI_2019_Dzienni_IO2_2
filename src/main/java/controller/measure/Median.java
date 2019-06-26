@@ -2,6 +2,7 @@ package controller.measure;
 
 import model.Rate;
 
+import java.text.DecimalFormat;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -22,6 +23,11 @@ public class Median implements Measure {
         } else {
             median = (rate.get(rate.size() / 2 - 1).getMid() + rate.get(rate.size() / 2).getMid()) / 2;
         }
+
+        DecimalFormat df = new DecimalFormat("#.####");
+        String midString = df.format(median);
+        midString = midString.replace(",", ".");
+        median = Double.parseDouble(midString);
     }
 
     public double getMedian() {

@@ -21,7 +21,7 @@ public class MeasureController {
         System.out.println("1 - week");
         System.out.println("2 - 2 weeks");
         System.out.println("3 - month");
-        System.out.println("4 - 4 months");
+        System.out.println("4 - 3 months (quarter)");
         System.out.println("5 - 6 months");
         System.out.println("6 - year");
         System.out.print("> ");
