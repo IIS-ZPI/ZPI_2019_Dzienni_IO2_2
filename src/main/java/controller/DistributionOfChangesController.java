@@ -12,19 +12,26 @@ import java.util.Scanner;
 
 public class DistributionOfChangesController {
 
+    private Scanner scanner = new Scanner(System.in);
+    private CurrencyList currencyList;
+
     public void countDistribution() throws Exception {
 
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 
-        Scanner scanner = new Scanner(System.in);
-
         CurrencyCalendar cC = new CurrencyCalendar();
 
-        System.out.print("\nEnter first value code: ");
-        String codeFirst = scanner.next();
-        System.out.print("\nEnter second value code: ");
-        String codeSecond = scanner.next();
+        CurrancyController currancyController1 = new CurrancyController("gbp", "2019-01-01", "2019-01-08");
+        currencyList = currancyController1.getCurrencyList();
+
+        System.out.println("\nAvailable value codes: ");
+        for (Table t : currencyList.getTableRates()) {
+            System.out.print(t.getCode() + " ");
+        }
+
+        String codeFirst = readCode();
+        String codeSecond = readCode();
 
         // format daty
         CurrencyCalendar cC1 = new CurrencyCalendar();
@@ -101,6 +108,7 @@ public class DistributionOfChangesController {
             DecimalFormat df = new DecimalFormat("#.##");
             String midFirstString = df.format(first);
             midFirstString = midFirstString.replace(",", ".");
+
             if (midFirstString.equals("-0") || midFirstString.equals("0"))
                 midFirstString = "0.00";
             if (!midFirstString.contains("-"))
@@ -110,6 +118,7 @@ public class DistributionOfChangesController {
             String midSecondString = df.format(second);
             midSecondString = midSecondString.replace(",", ".");
             if (midSecondString.equals("-0") || midSecondString.equals("0"))
+
                 midSecondString = "0.00";
             if (!midSecondString.contains("-"))
                 midSecondString = " " + midSecondString;
@@ -119,6 +128,29 @@ public class DistributionOfChangesController {
     }
 
     public void countQuarterSubstaction(CurrencyHistory currancyControllerFirst, CurrencyHistory currencyHistorySecond) {
+    }
 
+    private String readCode() {
+        String input = null;
+        System.out.print("\nEnter value code: ");
+        input = scanner.next();
+        System.out.println(input);
+
+
+        while (!containKey(input.toUpperCase())) {
+            System.out.print("Incorrect currency. Try again\nEnter value code: ");
+            input = scanner.next();
+        }
+        return input;
+    }
+
+
+    private boolean containKey(String key) {
+        for (Table t : currencyList.getTableRates()) {
+            if (key.equals(t.getCode())) {
+                return true;
+            }
+        }
+        return false;
     }
 }
