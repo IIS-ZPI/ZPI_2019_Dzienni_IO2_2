@@ -8,12 +8,13 @@ import java.util.Scanner;
 
 public class MeasureController {
 
+    private Scanner scanner = new Scanner(System.in);
+    private CurrencyList currencyList;
+
     public void countMeasure() throws Exception {
 
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-
-        Scanner scanner = new Scanner(System.in);
 
         CurrencyCalendar cC = new CurrencyCalendar();
 
@@ -32,15 +33,14 @@ public class MeasureController {
 
         // pobieranie walut z NBP
         CurrancyController currancyController1 = new CurrancyController("gbp", "2019-01-01", "2019-01-08");
-        CurrencyList currencyList = currancyController1.getCurrencyList();
+        currencyList = currancyController1.getCurrencyList();
 
         System.out.println("\nAvailable value codes: ");
         for (Table t : currencyList.getTableRates()) {
             System.out.print(t.getCode() + " ");
         }
 
-        System.out.print("\nEnter value code: ");
-        String code = scanner.next();
+        String code = readCode();
 
         // format daty
         String startDateFormat = sdf.format(cC.getStartDate());
@@ -83,4 +83,31 @@ public class MeasureController {
 //        System.out.println("Liczba sesji stałych: " + staticSession.getStaticSessionCounter());
 //        System.out.println("Liczba sesji spadkowych: " + downwardSession.getDownwardSessionCounter());
     }
+
+
+    private String readCode(){
+        String input = null;
+        System.out.print("\nEnter value code: ");
+        input = scanner.next();
+        System.out.println(input);
+
+
+        while(!containKey(input.toUpperCase())){
+            System.out.print("Incorrect currency. Try again\nEnter value code: ");
+            input = scanner.next();
+        }
+        return input;
+    }
+
+
+    private boolean containKey(String key){
+        for(Table t : currencyList.getTableRates()){
+            if(key.equals(t.getCode())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }
