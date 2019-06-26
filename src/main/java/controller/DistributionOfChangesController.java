@@ -20,33 +20,8 @@ public class DistributionOfChangesController {
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
 
-
         CurrencyCalendar cC = new CurrencyCalendar();
 
-//        System.out.println("Enter session date range:");
-//        System.out.println("1 - week");
-//        System.out.println("2 - 2 weeks");
-//        System.out.println("3 - month");
-//        System.out.println("4 - 4 months");
-//        System.out.println("5 - 6 months");
-//        System.out.println("6 - year");
-//        System.out.print("> ");
-
-//        // wczytywanie opcji
-//        int rangeSelected = scanner.nextInt();
-//        cC.setDateRange(rangeSelected);
-
-        // pobieranie walut z NBP
-//        CurrancyController currancyController1 = new CurrancyController("gbp", "2019-01-01", "2019-01-08");
-//        CurrencyList currencyList = currancyController1.getCurrencyList();
-//
-//        CurrancyController currancyController2 = new CurrancyController("gbp", "2019-01-01", "2019-01-08");
-//        CurrencyList currencyList2 = currancyController1.getCurrencyList();
-//
-//        System.out.println("\nAvailable value codes: ");
-//        for (Table t : currencyList.getTableRates()) {
-//            System.out.print(t.getCode() + " ");
-//        }
         CurrancyController currancyController1 = new CurrancyController("gbp", "2019-01-01", "2019-01-08");
         currencyList = currancyController1.getCurrencyList();
 
@@ -127,29 +102,33 @@ public class DistributionOfChangesController {
 
         for (int i = 1; i < currencyHistorySecond.getRates().size(); i++) {
 
-            double first = Math.abs(currancyControllerFirst.getRates().get(i - 1).getMid() - currancyControllerFirst.getRates().get(i).getMid());
-            double second = Math.abs(currencyHistorySecond.getRates().get(i - 1).getMid() - currencyHistorySecond.getRates().get(i).getMid());
+            double first = currancyControllerFirst.getRates().get(i - 1).getMid() - currancyControllerFirst.getRates().get(i).getMid();
+            double second = currencyHistorySecond.getRates().get(i - 1).getMid() - currencyHistorySecond.getRates().get(i).getMid();
 
             DecimalFormat df = new DecimalFormat("#.##");
             String midFirstString = df.format(first);
             midFirstString = midFirstString.replace(",", ".");
-            if (midFirstString.equals("0"))
+
+            if (midFirstString.equals("-0") || midFirstString.equals("0"))
                 midFirstString = "0.00";
+            if (!midFirstString.contains("-"))
+                midFirstString = " " + midFirstString;
 
             df = new DecimalFormat("#.##");
             String midSecondString = df.format(second);
             midSecondString = midSecondString.replace(",", ".");
-            if (midSecondString.equals("0"))
+            if (midSecondString.equals("-0") || midSecondString.equals("0"))
+
                 midSecondString = "0.00";
+            if (!midSecondString.contains("-"))
+                midSecondString = " " + midSecondString;
 
             System.out.println(i + ": " + midFirstString + "            " + midSecondString);
         }
     }
 
     public void countQuarterSubstaction(CurrencyHistory currancyControllerFirst, CurrencyHistory currencyHistorySecond) {
-
     }
-
 
     private String readCode() {
         String input = null;

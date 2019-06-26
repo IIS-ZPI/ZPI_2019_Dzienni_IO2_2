@@ -4,12 +4,16 @@ import controller.measure.*;
 import model.*;
 
 import java.text.SimpleDateFormat;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MeasureController {
 
     private Scanner scanner = new Scanner(System.in);
     private CurrencyList currencyList;
+
+    int rangeSelected = 0;
+    boolean correctOption = false;
 
     public void countMeasure() throws Exception {
 
@@ -22,13 +26,25 @@ public class MeasureController {
         System.out.println("1 - week");
         System.out.println("2 - 2 weeks");
         System.out.println("3 - month");
-        System.out.println("4 - 4 months");
+        System.out.println("4 - 3 months (quarter)");
         System.out.println("5 - 6 months");
         System.out.println("6 - year");
         System.out.print("> ");
 
         // wczytywanie opcji
-        int rangeSelected = scanner.nextInt();
+
+        while(!correctOption){
+            try {
+                rangeSelected = scanner.nextInt();
+            }catch (InputMismatchException e){
+                //System.out.println("Wrong choice. Try again!");
+                scanner.next();
+            }
+            if(rangeSelected >0 && rangeSelected < 7)
+                correctOption = true;
+            else
+                System.out.println("Wrong choice. Try again!");
+        }
         cC.setDateRange(rangeSelected);
 
         // pobieranie walut z NBP

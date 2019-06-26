@@ -16,7 +16,7 @@ public class CoefficientOfVariation implements Measure {
     public void countStatisticalMeasure(double standardDeviation, double mean) {
 
         coefficientOfVariation = standardDeviation/mean*100;
-        DecimalFormat df = new DecimalFormat("#.##");
+        DecimalFormat df = new DecimalFormat("#.####");
         String midString = df.format(coefficientOfVariation);
         midString  = midString.replace(",", ".");
         coefficientOfVariation = Double.parseDouble(midString);

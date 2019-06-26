@@ -10,6 +10,7 @@ import model.Rate;
 import model.Table;
 
 import java.text.SimpleDateFormat;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class SessionController {
@@ -17,12 +18,13 @@ public class SessionController {
     private CurrencyList currencyList;
     Scanner scanner = new Scanner(System.in);
 
+    boolean correctOption =  false;
+    int rangeSelected = 0;
+
     public void countSession() throws Exception {
 
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-
-
 
         CurrencyCalendar cC = new CurrencyCalendar();
 
@@ -30,13 +32,24 @@ public class SessionController {
         System.out.println("1 - week");
         System.out.println("2 - 2 weeks");
         System.out.println("3 - month");
-        System.out.println("4 - 4 months");
+        System.out.println("4 - 3 months (quarter)");
         System.out.println("5 - 6 months");
         System.out.println("6 - year");
         System.out.print("> ");
 
         // wczytywanie opcji
-        int rangeSelected = scanner.nextInt();
+        while(!correctOption){
+            try {
+                rangeSelected = scanner.nextInt();
+            }catch (InputMismatchException e){
+                //System.out.println("Wrong choice. Try again!");
+                scanner.next();
+            }
+            if(rangeSelected >0 && rangeSelected < 7)
+                correctOption = true;
+            else
+                System.out.println("Wrong choice. Try again!");
+        }
         cC.setDateRange(rangeSelected);
 
         // pobieranie walut z NBP
@@ -101,6 +114,4 @@ public class SessionController {
         }
         return false;
     }
-
-
 }

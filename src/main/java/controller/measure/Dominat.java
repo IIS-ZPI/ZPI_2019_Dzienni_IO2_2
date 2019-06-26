@@ -2,6 +2,7 @@ package controller.measure;
 
 import model.Rate;
 
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.function.BinaryOperator;
 
@@ -19,6 +20,11 @@ public class Dominat implements Measure {
 
         dominate = theList.stream()
                 .reduce(BinaryOperator.maxBy(Comparator.comparingInt(o -> Collections.frequency(theList, o)))).orElse(null);
+
+        DecimalFormat df = new DecimalFormat("#.####");
+        String midString = df.format(dominate);
+        midString = midString.replace(",", ".");
+        dominate = Double.parseDouble(midString);
     }
 
     public double getDominate() {
