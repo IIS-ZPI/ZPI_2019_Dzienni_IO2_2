@@ -62,4 +62,8 @@ public class CurrencyCalendar
     public Date getEndDate() {
         return endDate;
     }
+
+    public CurrencyCalendar getCurrencyCalender(){
+        return this;
+    }
 }

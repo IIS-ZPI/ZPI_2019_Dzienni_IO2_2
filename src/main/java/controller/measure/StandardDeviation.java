@@ -13,7 +13,6 @@ public class StandardDeviation implements Measure {
     @Override
     public void countStatisticalMeasure(List<Rate> rate) {
 
-
         getMean(rate);
         double temp = 0;
         for (Rate a : rate)
@@ -22,14 +21,14 @@ public class StandardDeviation implements Measure {
 
         DecimalFormat df = new DecimalFormat("#.####");
         String midString = df.format(standardDeviation);
-        midString  = midString.replace(",", ".");
+        midString = midString.replace(",", ".");
         standardDeviation = Double.parseDouble(midString);
     }
 
     void getMean(List<Rate> rate) {
         for (Rate a : rate)
             mean += a.getMid();
-            mean = mean/rate.size();
+        mean = mean / rate.size();
     }
 
     public double getStandardDeviation() {

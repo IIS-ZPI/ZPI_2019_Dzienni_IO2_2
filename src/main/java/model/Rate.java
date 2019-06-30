@@ -7,6 +7,10 @@ import java.text.DecimalFormat;
 
 public class Rate implements Comparable< Rate >{
 
+    public Rate(Double mid) {
+        this.mid = mid;
+    }
+
     @SerializedName("no")
     @Expose
     private String no;
