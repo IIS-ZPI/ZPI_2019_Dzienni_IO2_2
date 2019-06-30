@@ -111,9 +111,6 @@ public class DistributionOfChangesController {
         }
     }
 
-    public void countQuarterSubstaction(CurrencyHistory currancyControllerFirst, CurrencyHistory currencyHistorySecond) {
-    }
-
     private String readCode() {
         String input = null;
         System.out.print("\nEnter value code: ");
