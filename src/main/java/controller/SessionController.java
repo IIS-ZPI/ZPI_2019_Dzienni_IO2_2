@@ -25,6 +25,4 @@ public class SessionController extends Reader {
         System.out.println("Liczba sesji stałych: " + staticSession.getStaticSessionCounter());
         System.out.println("Liczba sesji spadkowych: " + downwardSession.getDownwardSessionCounter());
     }
-
-
 }

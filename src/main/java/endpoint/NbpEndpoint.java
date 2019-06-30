@@ -1,8 +1,5 @@
 package endpoint;
 
-import com.google.gson.Gson;
-
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.ConnectException;
@@ -30,11 +27,10 @@ public class NbpEndpoint {
         con.setRequestProperty("User-Agent", USER_AGENT);
         try {
             responseCode = con.getResponseCode();
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new ConnectException();
         }
-       // System.out.println("\nSending 'GET' request to URL : " + con.getURL().toString());
-        //System.out.println("Response Code : " + responseCode);
+
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(con.getInputStream()));
         String inputLine;

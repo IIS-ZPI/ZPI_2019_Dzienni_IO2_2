@@ -1,9 +1,5 @@
 package controller;
 
-import controller.measure.CoefficientOfVariation;
-import controller.measure.Dominat;
-import controller.measure.Median;
-import controller.measure.StandardDeviation;
 import model.*;
 
 import java.text.DecimalFormat;

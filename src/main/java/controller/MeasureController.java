@@ -4,7 +4,7 @@ import controller.measure.*;
 import model.*;
 
 
-public class MeasureController extends Reader{
+public class MeasureController extends Reader {
 
 
     public void countMeasure() throws Exception {
@@ -27,9 +27,4 @@ public class MeasureController extends Reader{
         System.out.println("StandardDeviation: " + standardDeviaton.getStandardDeviation());
 
     }
-
-
-
-
-
 }
